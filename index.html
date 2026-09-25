@@ -3,179 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clasificador de Embolia Pulmonar Aguda (AHA/ACC 2026)</title>
+    <title>Clasificador TEP AHA/ACC 2026</title>
     <style>
         :root { --primary: #1e3a8a; --primary-light: #eff6ff; --border: #cbd5e1; --accent: #2563eb; --text: #0f172a; --bg: #f8fafc; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 20px; line-height: 1.5; }
-        .container { max-width: 1050px; margin: 0 auto; background: #ffffff; padding: 24px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-        h1, h2, h3 { color: var(--primary); margin-top: 0; }
-        .subtitle { color: #64748b; font-size: 0.95rem; margin-bottom: 20px; border-bottom: 2px solid var(--primary-light); padding-bottom: 10px; }
-        .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
-        .tab-btn { padding: 10px 18px; border: none; background: #e2e8f0; color: #475569; border-radius: 6px; cursor: pointer; font-weight: 600; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 12px; line-height: 1.4; }
+        .container { max-width: 1000px; margin: 0 auto; background: #ffffff; padding: 16px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        h1 { color: var(--primary); margin-top: 0; font-size: 1.3rem; }
+        .subtitle { color: #64748b; font-size: 0.85rem; margin-bottom: 15px; border-bottom: 2px solid var(--primary-light); padding-bottom: 8px; }
+        .tabs { display: flex; gap: 8px; margin-bottom: 15px; }
+        .tab-btn { flex: 1; padding: 10px 8px; border: none; background: #e2e8f0; color: #475569; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem; }
         .tab-btn.active { background: var(--accent); color: #ffffff; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        .grid-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 20px; }
-        .form-group { background: var(--primary-light); padding: 14px; border-radius: 8px; border: 1px solid #dbeafe; }
-        .form-group.full-width { grid-column: 1 / -1; background: #f0f9ff; border-color: #bae6fd; }
-        .form-group label { display: block; font-weight: 600; margin-bottom: 6px; color: #1e40af; font-size: 0.9rem; }
-        select, input[type="number"] { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; background: white; font-size: 0.95rem; box-sizing: border-box; }
-        .checklist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-top: 10px; }
-        .check-item { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; background: #ffffff; padding: 8px; border-radius: 6px; border: 1px solid #cbd5e1; }
-        .check-item input { cursor: pointer; width: 16px; height: 16px; }
-        .score-badge { display: inline-block; padding: 4px 10px; background: #1e3a8a; color: white; border-radius: 4px; font-weight: bold; font-size: 0.85rem; margin-top: 8px; }
-        .btn-calc { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 1.05rem; font-weight: bold; cursor: pointer; }
-        .btn-calc:hover { background: var(--accent); }
-        .result-box { margin-top: 24px; padding: 20px; border-radius: 8px; border-left: 6px solid var(--accent); background: #f1f5f9; display: none; }
-        .result-title { font-size: 1.4rem; font-weight: bold; margin-bottom: 8px; }
-        .badge-cat { display: inline-block; padding: 4px 12px; border-radius: 20px; color: white; font-weight: bold; font-size: 1.1rem; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.88rem; }
-        th, td { border: 1px solid var(--border); padding: 10px; text-align: left; vertical-align: top; }
+        .grid-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-bottom: 15px; }
+        .form-group { background: var(--primary-light); padding: 12px; border-radius: 8px; border: 1px solid #dbeafe; }
+        .form-group.full-width { background: #f0f9ff; border-color: #bae6fd; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 6px; color: #1e40af; font-size: 0.88rem; }
+        select, input[type="number"] { width: 100%; padding: 8px; border: 1px solid var(--border); border-radius: 6px; background: white; font-size: 0.9rem; box-sizing: border-box; }
+        .checklist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; margin-top: 8px; }
+        .check-item { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; background: #ffffff; padding: 8px; border-radius: 6px; border: 1px solid #cbd5e1; }
+        .check-item input { width: 18px; height: 18px; cursor: pointer; }
+        .score-badge { display: inline-block; padding: 4px 8px; background: #1e3a8a; color: white; border-radius: 4px; font-weight: bold; font-size: 0.8rem; margin-top: 6px; }
+        .btn-calc { width: 100%; padding: 14px; background: var(--accent); color: white; border: none; border-radius: 8px; font-size: 1.05rem; font-weight: bold; cursor: pointer; }
+        .btn-calc:active { background: var(--primary); }
+        .result-box { margin-top: 15px; padding: 16px; border-radius: 8px; border-left: 6px solid var(--accent); background: #f1f5f9; display: none; }
+        .result-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 8px; }
+        .badge-cat { display: inline-block; padding: 6px 14px; border-radius: 20px; color: white; font-weight: bold; font-size: 1rem; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.78rem; }
+        th, td { border: 1px solid var(--border); padding: 6px; text-align: left; vertical-align: top; }
         th { background-color: var(--primary); color: white; }
         tr:nth-child(even) { background-color: #f8fafc; }
     </style>
 </head>
 <body>
+
 <div class="container">
-    <h1>Clasificación de TEP Aguda — AHA/ACC 2026</h1>
-    <div class="subtitle">Estratificación de riesgo según la Guía AHA/ACC/ACCP/CHEST/SCAI 2026[cite: 1].</div>
+    <h1>Clasificación TEP Aguda — AHA/ACC 2026</h1>
+    <div class="subtitle">Estratificación de riesgo según la Guía AHA/ACC/ACCP 2026[cite: 1].</div>
     
     <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('calculator')">Calculadora / Clasificador</button>
-        <button class="tab-btn" onclick="switchTab('table')">Tabla de Referencia Matriz (A-E)</button>
+        <button type="button" class="tab-btn active" onclick="switchTab('calculator', event)">Calculadora</button>
+        <button type="button" class="tab-btn" onclick="switchTab('table', event)">Matriz (A-E)</button>
     </div>
 
     <div id="calculator" class="tab-content active">
-        <form id="peForm">
-            <div class="grid-form">
-                <div class="form-group">
-                    <label>1. Presentación Clínica</label>
-                    <select id="symptoms">
-                        <option value="asymptomatic">Asintomático / Incidental</option>
-                        <option value="symptomatic" selected>Sintomático (Disnea, Dolor torácico, etc.)</option>
-                    </select>
+        <div class="grid-form">
+            <div class="form-group">
+                <label>1. Presentación Clínica</label>
+                <select id="symptoms">
+                    <option value="asymptomatic">Asintomático / Incidental</option>
+                    <option value="symptomatic" selected>Sintomático (Disnea, Dolor torácico, etc.)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>2. Anatomía de la Embolia (CTPA)</label>
+                <select id="anatomy">
+                    <option value="subsegmental_single">Subsegmentaria Única</option>
+                    <option value="subsegmental_multiple">Subsegmentaria Múltiple</option>
+                    <option value="segmental_proximal" selected>Segmentaria o Proximal (Lobar/Troncular)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 3: PESI / sPESI / HESTIA -->
+        <div class="form-group full-width" style="margin-bottom: 12px;">
+            <label style="color: #0369a1;">3. Escala de Severidad (PESI / sPESI / Hestia)</label>
+            
+            <div style="display: flex; gap: 15px; align-items: center; margin-top: 4px;">
+                <div style="width: 120px;">
+                    <label style="font-size:0.75rem; color:#475569; margin:0;">Edad:</label>
+                    <input type="number" id="pesi_age" value="60" min="18" max="110" oninput="updateScores()">
                 </div>
-                <div class="form-group">
-                    <label>2. Anatomía de la Embolia (CTPA)</label>
-                    <select id="anatomy">
-                        <option value="subsegmental_single">Subsegmentaria Única</option>
-                        <option value="subsegmental_multiple">Subsegmentaria Múltiple</option>
-                        <option value="segmental_proximal" selected>Segmentaria o Proximal (Lobar/Troncular)</option>
-                    </select>
+                <div style="margin-top: 12px;">
+                    <label class="check-item"><input type="checkbox" id="pesi_male" onchange="updateScores()"> Masculino (+10)</label>
                 </div>
             </div>
 
-            <!-- SECCIÓN 3: CHECKLIST PESI / sPESI / HESTIA -->
-            <div class="form-group full-width">
-                <label style="font-size: 1.05rem; color: #0369a1;">3. Escala de Severidad Clínica (Checklist PESI / sPESI / Hestia)</label>
-                
-                <div style="display: flex; gap: 20px; align-items: center; margin-top: 8px;">
-                    <div style="width: 160px;">
-                        <label style="font-size:0.8rem; color:#475569;">Edad del paciente:</label>
-                        <input type="number" id="pesi_age" value="60" min="18" max="110" oninput="updateScores()">
-                    </div>
-                    <div style="display: flex; gap: 15px; margin-top: 15px;">
-                        <label class="check-item"><input type="checkbox" id="pesi_male" onchange="updateScores()"> Sexo Masculino (+10 pts)</label>
-                    </div>
-                </div>
-
-                <div style="font-weight: bold; margin-top: 12px; font-size: 0.88rem; color: #0f172a;">Criterios Clínicos / Comorbilidades:</div>
-                <div class="checklist-grid">
-                    <label class="check-item"><input type="checkbox" class="pesi_check" data-pesi="30" data-spesi="1" onchange="updateScores()"> Cáncer / Malignidad (+30)</label>
-                    <label class="check-item"><input type="checkbox" class="pesi_check" data-pesi="10" data-spesi="1" onchange="updateScores()"> Insuficiencia Cardíaca (+10)</label>
-                    <label class="check-item"><input type="checkbox" class="pesi_check" data-pesi="10" data-spesi="1" onchange="updateScores()"> Enfermedad Pulmonar Crónica (+10)</label>
-                    <label class="check-item"><input type="checkbox" class="pesi_check" data-pesi="20" data-spesi="1" id="pesi_hr" onchange="updateScores()"> Frecuencia Cardíaca ≥ 110 bpm (+20)</label>
-                    <label class="check-item"><input type="checkbox" class="pesi_check" data-pesi="30" data-spesi="1" id="pesi_sbp" onchange="updateScores()"> Presión Sistólica &lt; 100 mmHg (+30)</label>
-                    <label class="check-item"><input type="checkbox" class="pesi_check" data-pesi="20" data-spesi="1" onchange="updateScores()"> Frecuencia Respiratoria ≥ 30 rpm (+20)</label>
-                    <label class="check-item"><input type="checkbox" class="pesi_check" data-pesi="20" data-spesi="0" onchange="updateScores()"> Temperatura &lt; 36.0 °C (+20)</label>
-                    <label class="check-item"><input type="checkbox" class="pesi_check" data-pesi="60" data-spesi="0" onchange="updateScores()"> Estado Mental Alterado / Confusión (+60)</label>
-                    <label class="check-item"><input type="checkbox" class="pesi_check" data-pesi="20" data-spesi="1" id="pesi_sat" onchange="updateScores()"> Saturación O₂ &lt; 90% (+20)</label>
-                </div>
-
-                <div style="margin-top: 12px; padding-top: 8px; border-top: 1px dashed #cbd5e1; display: flex; gap: 15px; flex-wrap: wrap;">
-                    <div id="pesiDisplay" class="score-badge" style="background:#0284c7;">Puntuación PESI: 60 (Clase I - Bajo Riesgo)</div>
-                    <div id="spesiDisplay" class="score-badge" style="background:#0369a1;">sPESI: 0 puntos (Bajo Riesgo)</div>
-                </div>
-
-                <div style="margin-top: 12px; font-size:0.85rem; background: #fff; padding: 8px; border-radius: 6px; border: 1px solid #e2e8f0;">
-                    <label class="check-item" style="border:none; padding:0;"><input type="checkbox" id="hestia_positive" onchange="updateScores()"> <b>Criterios HESTIA:</b> ¿Presenta al menos 1 criterio de exclusión Hestia para alta? (ej. Riego de sangrado, necesidad O2, dolor severo, falla renal/hepática social)</label>
-                </div>
+            <div style="font-weight: bold; margin-top: 8px; font-size: 0.8rem; color: #0f172a;">Criterios Clínicos / Comorbilidades:</div>
+            <div class="checklist-grid">
+                <label class="check-item"><input type="checkbox" class="pesi_check" data-pesi="30" data-spesi="1" onchange="updateScores()"> Cáncer (+30)</label>
+                <label class="check-item"><input type="checkbox" class="pesi_check" data-pesi="10" data-spesi="1" onchange="updateScores()"> Falla Cardíaca (+10)</label>
+                <label class="check-item"><input type="checkbox" class="pesi_check" data-pesi="10" data-spesi="1" onchange="updateScores()"> Enfermedad Pulmonar Crónica (+10)</label>
+                <label class="check-item"><input type="checkbox" class="pesi_check" data-pesi="20" data-spesi="1" onchange="updateScores()"> FC ≥ 110 bpm (+20)</label>
+                <label class="check-item"><input type="checkbox" class="pesi_check" data-pesi="30" data-spesi="1" onchange="updateScores()"> PA Sistólica &lt; 100 mmHg (+30)</label>
+                <label class="check-item"><input type="checkbox" class="pesi_check" data-pesi="20" data-spesi="1" onchange="updateScores()"> FR ≥ 30 rpm (+20)</label>
+                <label class="check-item"><input type="checkbox" class="pesi_check" data-pesi="20" data-spesi="0" onchange="updateScores()"> Temp &lt; 36.0 °C (+20)</label>
+                <label class="check-item"><input type="checkbox" class="pesi_check" data-pesi="60" data-spesi="0" onchange="updateScores()"> Confusión / Estado Mental (+60)</label>
+                <label class="check-item"><input type="checkbox" class="pesi_check" data-pesi="20" data-spesi="1" onchange="updateScores()"> SatO₂ &lt; 90% (+20)</label>
             </div>
 
-            <div class="grid-form">
-                <div class="form-group">
-                    <label>4. Ventrículo Derecho (Ecocardiograma / CTPA)</label>
-                    <select id="rv_status">
-                        <option value="normal">VD Normal (VD/VI &lt; 1.0, sin deformidad de tabique)</option>
-                        <option value="abnormal">Disfunción / Dilatación del VD (VD/VI ≥ 1.0, hipocinesia)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>5. Biomarcadores Miocárdicos y Perfusión</label>
-                    <select id="biomarkers">
-                        <option value="normal">Todos Normales (Troponina y BNP normales)</option>
-                        <option value="elevated">≥ 1 Biomarcador Elevado (Troponina o BNP (+))</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>6. Estado Hemodinámico</label>
-                    <select id="hemodynamics">
-                        <option value="stable">Normotenso / Estable</option>
-                        <option value="transient_hypotension">Hipotensión Transitoria o Recurrente</option>
-                        <option value="normotensive_shock">Choque Normotenso (Lactato &gt; 2.0, AKI, oliguria)</option>
-                        <option value="persistent_shock">Choque Cardiogénico Persistente (SCAI C: Vasopresores)</option>
-                        <option value="refractory_shock">Choque Refractario / Paro Cardíaco (SCAI D-E)</option>
-                    </select>
-                </div>
+            <div style="margin-top: 8px; padding-top: 6px; border-top: 1px dashed #cbd5e1; display: flex; gap: 8px; flex-wrap: wrap;">
+                <div id="pesiDisplay" class="score-badge" style="background:#0284c7;">PESI: 60 pts (Clase I)</div>
+                <div id="spesiDisplay" class="score-badge" style="background:#0369a1;">sPESI: 0 pts</div>
             </div>
 
-            <div class="form-group" style="background-color: #ffe4e6; border-color: #fecdd3; margin-bottom: 20px;">
-                <label style="color: #9f1239;">7. Modificador Respiratorio (R)</label>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="mod_r">
-                    <label for="mod_r" style="font-weight: normal; margin:0; color: #881337;">¿Requiere O₂ Alto Flujo, Mascarilla con Reservorio, VNI o VM?[cite: 1]</label>
-                </div>
+            <div style="margin-top: 8px; font-size:0.8rem; background: #fff; padding: 6px; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <label class="check-item" style="border:none; padding:0;"><input type="checkbox" id="hestia_positive" onchange="updateScores()"> <b>Criterios HESTIA:</b> ≥1 criterio de exclusión para alta</label>
             </div>
+        </div>
 
-            <button type="button" class="btn-calc" onclick="calculateCategory()">Clasificar Paciente</button>
-        </form>
+        <div class="grid-form">
+            <div class="form-group">
+                <label>4. Ventrículo Derecho (Eco / CTPA)</label>
+                <select id="rv_status">
+                    <option value="normal">VD Normal (VD/VI &lt; 1.0)</option>
+                    <option value="abnormal">Disfunción VD (VD/VI ≥ 1.0)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>5. Biomarcadores Miocárdicos</label>
+                <select id="biomarkers">
+                    <option value="normal">Todos Normales</option>
+                    <option value="elevated">≥ 1 Biomarcador Elevado (Troponina/BNP)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>6. Estado Hemodinámico</label>
+                <select id="hemodynamics">
+                    <option value="stable">Normotenso / Estable</option>
+                    <option value="transient_hypotension">Hipotensión Transitoria / Recurrente</option>
+                    <option value="normotensive_shock">Choque Normotenso (Lactato &gt; 2.0 / AKI)</option>
+                    <option value="persistent_shock">Choque Persistente (SCAI C: Vasopresores)</option>
+                    <option value="refractory_shock">Choque Refractario / Paro (SCAI D-E)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group" style="background-color: #ffe4e6; border-color: #fecdd3; margin-bottom: 15px;">
+            <label style="color: #9f1239;">7. Modificador Respiratorio (R)</label>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <input type="checkbox" id="mod_r" style="width:18px; height:18px;">
+                <label for="mod_r" style="font-weight: normal; margin:0; color: #881337; font-size:0.82rem;">¿Requiere O₂ Alto Flujo, Reservorio, VNI o VM?[cite: 1]</label>
+            </div>
+        </div>
+
+        <button type="button" class="btn-calc" onclick="calculateCategory()">Clasificar Paciente</button>
 
         <div id="resultBox" class="result-box">
             <div id="resultCategory" class="result-title"></div>
-            <div id="resultDetails" style="margin-top:10px;"></div>
-            <div id="resultManagement" style="margin-top:15px; font-weight: 500; padding: 10px; background: white; border-radius: 6px;"></div>
+            <div id="resultDetails" style="margin-top:8px; font-size:0.9rem;"></div>
+            <div id="resultManagement" style="margin-top:10px; font-weight: 500; padding: 10px; background: white; border-radius: 6px; font-size:0.9rem;"></div>
         </div>
     </div>
 
     <div id="table" class="tab-content">
         <h3>Matriz Completa AHA/ACC 2026</h3>
-        <table>
-            <thead>
-                <tr><th>Categoría</th><th>Subtipo</th><th>Sintomático</th><th>Anatomía</th><th>Riesgo Clínico</th><th>Estatus VD</th><th>Biomarcadores</th><th>Hemodinámica</th></tr>
-            </thead>
-            <tbody>
-                <tr><td><b style="color:#059669">Categoría A</b></td><td><b>A1 / A2</b></td><td>No</td><td>Subsegmentaria (A1) / Segmentaria-Proximal (A2)</td><td>N/A</td><td>Normal</td><td>Normales</td><td>Estable</td></tr>
-                <tr><td><b style="color:#2563eb">Categoría B</b></td><td><b>B1 / B2</b></td><td>Sí</td><td>Subsegmentaria (B1) / Segmentaria-Proximal (B2)</td><td>Bajo (sPESI=0)</td><td>Normal</td><td>Normales</td><td>Estable</td></tr>
-                <tr><td rowspan="3"><b style="color:#d97706">Categoría C</b></td><td><b>C1</b></td><td>Sí</td><td>Cualquiera</td><td>Elevado (sPESI≥1)</td><td>Normal</td><td>Normales</td><td>Estable</td></tr>
-                <tr><td><b>C2</b></td><td>Sí</td><td>Cualquiera</td><td>Elevado (sPESI≥1)</td><td colspan="2" style="text-align:center;"><b>VD Anormal O Biomarcador (+)</b></td><td>Estable</td></tr>
-                <tr><td><b>C3</b></td><td>Sí</td><td>Cualquiera</td><td>Elevado (sPESI≥1)</td><td>Disfunción VD</td><td>Biomarcador (+)</td><td>Estable</td></tr>
-                <tr><td rowspan="2"><b style="color:#dc2626">Categoría D</b></td><td><b>D1</b></td><td>Sí</td><td>Cualquiera</td><td>Elevado</td><td>Generalmente Anormal</td><td>Generalmente (+)</td><td>Hipotensión Transitoria</td></tr>
-                <tr><td><b>D2</b></td><td>Sí</td><td>Cualquiera</td><td>Elevado</td><td>Generalmente Anormal</td><td>Lactato &gt; 2.0 / AKI</td><td><b>Choque Normotenso</b></td></tr>
-                <tr><td rowspan="2"><b style="color:#7f1d1d">Categoría E</b></td><td><b>E1</b></td><td>Sí</td><td>Cualquiera</td><td>Elevado</td><td>Disfunción Severa VD</td><td>Elevados</td><td><b>Choque Persistente (SCAI C)</b></td></tr>
-                <tr><td><b>E2</b></td><td>Sí</td><td>Cualquiera</td><td>Elevado</td><td>Disfunción Severa VD</td><td>Elevados / Acidosis</td><td><b>Choque Refractario / Paro (SCAI D-E)</b></td></tr>
-            </tbody>
-        </table>
+        <div style="overflow-x:auto;">
+            <table>
+                <thead>
+                    <tr><th>Categoría</th><th>Subtipo</th><th>Sintomático</th><th>Anatomía</th><th>Riesgo Clínico</th><th>Estatus VD</th><th>Biomarcadores</th><th>Hemodinámica</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><b style="color:#059669">Categoría A</b></td><td><b>A1 / A2</b></td><td>No</td><td>Subsegmentaria (A1) / Segmentaria-Proximal (A2)</td><td>N/A</td><td>Normal</td><td>Normales</td><td>Estable</td></tr>
+                    <tr><td><b style="color:#2563eb">Categoría B</b></td><td><b>B1 / B2</b></td><td>Sí</td><td>Subsegmentaria (B1) / Segmentaria-Proximal (B2)</td><td>Bajo (sPESI=0)</td><td>Normal</td><td>Normales</td><td>Estable</td></tr>
+                    <tr><td rowspan="3"><b style="color:#d97706">Categoría C</b></td><td><b>C1</b></td><td>Sí</td><td>Cualquiera</td><td>Elevado (sPESI≥1)</td><td>Normal</td><td>Normales</td><td>Estable</td></tr>
+                    <tr><td><b>C2</b></td><td>Sí</td><td>Cualquiera</td><td>Elevado (sPESI≥1)</td><td colspan="2" style="text-align:center;"><b>VD Anormal O Biomarcador (+)</b></td><td>Estable</td></tr>
+                    <tr><td><b>C3</b></td><td>Sí</td><td>Cualquiera</td><td>Elevado (sPESI≥1)</td><td>Disfunción VD</td><td>Biomarcador (+)</td><td>Estable</td></tr>
+                    <tr><td rowspan="2"><b style="color:#dc2626">Categoría D</b></td><td><b>D1</b></td><td>Sí</td><td>Cualquiera</td><td>Elevado</td><td>Generalmente Anormal</td><td>Generalmente (+)</td><td>Hipotensión Transitoria</td></tr>
+                    <tr><td><b>D2</b></td><td>Sí</td><td>Cualquiera</td><td>Elevado</td><td>Generalmente Anormal</td><td>Lactato &gt; 2.0 / AKI</td><td><b>Choque Normotenso</b></td></tr>
+                    <tr><td rowspan="2"><b style="color:#7f1d1d">Categoría E</b></td><td><b>E1</b></td><td>Sí</td><td>Cualquiera</td><td>Elevado</td><td>Disfunción Severa VD</td><td>Elevados</td><td><b>Choque Persistente (SCAI C)</b></td></tr>
+                    <tr><td><b>E2</b></td><td>Sí</td><td>Cualquiera</td><td>Elevado</td><td>Disfunción Severa VD</td><td>Elevados / Acidosis</td><td><b>Choque Refractario / Paro (SCAI D-E)</b></td></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
 <script>
     let globalIsHighRiskScore = false;
 
-    function switchTab(tabId) {
+    function switchTab(tabId, event) {
+        if(event) event.preventDefault();
         document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
         document.getElementById(tabId).classList.add('active');
-        event.target.classList.add('active');
+        if(event && event.target) event.target.classList.add('active');
     }
 
     function updateScores() {
@@ -192,9 +194,7 @@
             }
         });
 
-        let pesiClass = "";
-        let isPesiHigh = false;
-
+        let pesiClass = "", isPesiHigh = false;
         if (pesiScore <= 65) pesiClass = "Clase I (Muy Bajo)";
         else if (pesiScore <= 85) pesiClass = "Clase II (Bajo)";
         else if (pesiScore <= 105) { pesiClass = "Clase III (Moderado)"; isPesiHigh = true; }
@@ -253,14 +253,20 @@
                 color = "#d97706";
             }
         }
+        
         const finalCode = subcategory + (modR ? "R" : "");
+        const resultBox = document.getElementById('resultBox');
+        
         document.getElementById('resultCategory').innerHTML = `<span class="badge-cat" style="background-color: ${color}">${category} — Subtipo ${finalCode}</span>`;
-        document.getElementById('resultDetails').innerHTML = `<ul><li><b>Categoría:</b> ${category}</li><li><b>Subtipo:</b> ${finalCode}</li><li><b>Modificador R:</b> ${modR ? "<span style='color:red; font-weight:bold;'>SÍ</span>" : "NO"}</li></ul>`;
+        document.getElementById('resultDetails').innerHTML = `<ul style="margin:5px 0; padding-left:20px;"><li><b>Categoría:</b> ${category}</li><li><b>Subtipo:</b> ${finalCode}</li><li><b>Modificador R:</b> ${modR ? "<span style='color:red; font-weight:bold;'>SÍ</span>" : "NO"}</li></ul>`;
         document.getElementById('resultManagement').innerHTML = management;
-        document.getElementById('resultBox').style.display = "block";
+        
+        resultBox.style.display = "block";
+        
+        // Scroll suave automático hacia el resultado en móviles
+        resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // Inicializar puntuaciones al cargar
     updateScores();
 </script>
 </body>
